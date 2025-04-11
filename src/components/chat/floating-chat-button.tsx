@@ -21,12 +21,12 @@ export function FloatingChatButton({
       className={cn(
         "fixed bottom-6 right-6 rounded-full shadow-lg z-50 h-14 w-14 p-0",
         isOpen
-          ? "bg-gray-200 hover:bg-gray-300"
-          : "bg-green-600 hover:bg-green-700"
+          ? "bg-[#000000] hover:bg-red-700 cursor-pointer"
+          : "bg-green-600 hover:bg-green-700 cursor-pointer"
       )}
     >
       {isOpen ? (
-        <X className="h-6 w-6 text-gray-700" />
+        <X className="h-6 w-6 text-white" />
       ) : (
         <>
           <MessageSquare className="h-6 w-6" />

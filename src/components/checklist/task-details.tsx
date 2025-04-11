@@ -17,7 +17,7 @@ interface TaskDetailsProps {
 
 export function TaskDetails({ selectedTask }: TaskDetailsProps) {
   return (
-    <div className="h-full overflow-auto bg-[#F5F5F2] rounded-lg mt-4 mb-4 mr-4 ">
+    <div className="h-full overflow-auto hide-scrollbar bg-[#F5F5F2] rounded-lg mt-4 mb-4 mr-4 ">
       {selectedTask ? (
         <Card className="border-0 shadow-none h-full bg-[#F5F5F2]">
           <CardHeader className="pb-2">

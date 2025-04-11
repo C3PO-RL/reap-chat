@@ -2,7 +2,7 @@
 import type { Attachment, Message } from "@/types/index";
 import { formatDate } from "@/lib/utils";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import { Download, File } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ChatMessageProps {
@@ -15,20 +15,31 @@ export function ChatMessage({ message, isCurrentUser }: ChatMessageProps) {
     <div className={cn("flex flex-col", isCurrentUser && "items-end")}>
       <div
         className={cn(
-          "flex items-center gap-2 mb-2",
-          isCurrentUser && "flex-row-reverse"
+          "flex items-center gap-2 mb-2  w-full max-w-[90%]",
+          isCurrentUser && "flex-row-reverse justify-between "
         )}
       >
-        <Image
-          src={message.sender.avatar || "/placeholder.svg?height=32&width=32"}
-          alt={message.sender.name}
-          width={32}
-          height={32}
-          className="rounded-full"
-        />
-        <div className={cn(isCurrentUser && "text-right")}>
-          <p className="text-sm font-medium">{message.sender.name}</p>
-          <p className="text-xs text-gray-500">
+        <div>
+          {!isCurrentUser && (
+            <Image
+              src={message.sender.avatar || "images/sender-avatar.png"}
+              alt={message.sender.name}
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
+          )}
+        </div>
+        <div
+          className={cn(
+            "flex flex-row justify-between items-center w-full",
+            isCurrentUser && "text-right flex-row-reverse flex "
+          )}
+        >
+          <p className="text-sm font-medium text-[#344054] text-center">
+            {!isCurrentUser ? message.sender.name : "You"}
+          </p>
+          <p className="text-xs text-gray-500 text-center">
             {formatDate(message.timestamp)}
           </p>
         </div>
@@ -36,13 +47,13 @@ export function ChatMessage({ message, isCurrentUser }: ChatMessageProps) {
 
       <div
         className={cn(
-          "max-w-[80%] rounded-lg p-3",
+          "max-w-[90%] rounded-lg p-3 border border-gray-200",
           isCurrentUser
-            ? "bg-green-600 text-white ml-10 rounded-tr-none"
-            : "bg-gray-100 text-gray-800 mr-10 rounded-tl-none ml-10"
+            ? "bg-[#FFFFFF] text-[#475467] ml-10 rounded-tr-none"
+            : "bg-[#F5F5F2] text-[#475467] mr-10 rounded-tl-none ml-10"
         )}
       >
-        <p className="whitespace-pre-line">{message.content}</p>
+        <p className="whitespace-pre-line text-[#475467]">{message.content}</p>
 
         {message.attachments && message.attachments.length > 0 && (
           <div className="mt-2 space-y-2">
@@ -50,20 +61,11 @@ export function ChatMessage({ message, isCurrentUser }: ChatMessageProps) {
               <div
                 key={attachment.id}
                 className={cn(
-                  "flex items-center gap-2 p-2 rounded-md",
-                  isCurrentUser
-                    ? "bg-green-700 text-white"
-                    : "bg-white border border-gray-200"
+                  "flex items-center gap-2 p-2 rounded-md w-3/4 h-[72px]",
+                  "bg-white border border-gray-200"
                 )}
               >
-                <div
-                  className={cn(
-                    "flex-shrink-0 w-8 h-8 rounded flex items-center justify-center",
-                    isCurrentUser ? "bg-green-800" : "bg-gray-200"
-                  )}
-                >
-                  <span className="text-xs uppercase">{attachment.type}</span>
-                </div>
+                <File />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium truncate">
                     {attachment.name}
@@ -79,7 +81,7 @@ export function ChatMessage({ message, isCurrentUser }: ChatMessageProps) {
                 </div>
                 <button
                   className={cn(
-                    "hover:text-gray-700",
+                    "hover:text-gray-700 cursor-pointer",
                     isCurrentUser ? "text-white" : "text-gray-500"
                   )}
                 >

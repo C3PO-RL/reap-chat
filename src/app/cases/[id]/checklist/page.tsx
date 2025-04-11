@@ -74,21 +74,15 @@ const ruby: User = {
   id: "2",
   name: "Ruby",
   email: "ruby@example.com",
-  avatar: "/placeholder.svg?height=32&width=32",
+  avatar: "/images/sender-avatar.png",
 };
 
 const messages: Message[] = [
   {
-    id: "1",
-    sender: ruby,
-    content:
-      "Hey Josh, we need the resident to sign all releases. Since resident is married their spouse will also need to sign.",
-    timestamp: "2025-01-16T11:30:00",
-  },
-  {
     id: "2",
     sender: ruby,
-    content: "You can download them here:",
+    content:
+      "Hey Josh, we need the resident to sign all releases. Since resident is married their spouse will also need to sign. You can download them here:",
     timestamp: "2025-01-16T11:32:00",
     attachments: [
       {

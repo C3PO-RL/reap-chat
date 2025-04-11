@@ -30,7 +30,6 @@ export function Checklist({ initialTasks }: ChecklistProps) {
     setSelectedTaskId(taskId);
   };
 
-  // Find the selected task, including subtasks
   const findTaskById = (
     taskId: string | null,
     taskList: Task[]
@@ -51,13 +50,10 @@ export function Checklist({ initialTasks }: ChecklistProps) {
 
   const selectedTask = findTaskById(selectedTaskId, tasks);
 
-  // Update the toggleTaskCompletion function to handle parent-child relationships properly
   const toggleTaskCompletion = (taskId: string) => {
     setTasks((currentTasks) => {
-      // Create a deep copy of the tasks array to avoid mutating state directly
       const updatedTasks = JSON.parse(JSON.stringify(currentTasks)) as Task[];
 
-      // Helper function to find and update a task in the tree
       const updateTask = (tasks: Task[], id: string): boolean => {
         for (let i = 0; i < tasks.length; i++) {
           const task = tasks[i] || {};
@@ -65,7 +61,6 @@ export function Checklist({ initialTasks }: ChecklistProps) {
             const newCompletedState = !task.completed;
             task.completed = newCompletedState;
 
-            // If the task has subtasks, update all subtasks to match the parent's state
             if (task.subtasks && task.subtasks.length > 0) {
               task.subtasks.forEach((subtask) => {
                 subtask.completed = newCompletedState;
@@ -76,7 +71,6 @@ export function Checklist({ initialTasks }: ChecklistProps) {
           }
 
           if (task.subtasks && updateTask(task.subtasks, id)) {
-            // Check if all subtasks are completed
             const allSubtasksCompleted = task.subtasks.every(
               (subtask) => subtask.completed
             );
@@ -92,12 +86,10 @@ export function Checklist({ initialTasks }: ChecklistProps) {
     });
   };
 
-  // Check if all subtasks of a parent are completed and update parent accordingly
   useEffect(() => {
     setTasks((currentTasks) => {
       const updatedTasks = [...currentTasks];
 
-      // Helper function to check and update parent tasks
       const updateParentTasks = (tasks: Task[]): boolean => {
         let updated = false;
 
@@ -112,7 +104,6 @@ export function Checklist({ initialTasks }: ChecklistProps) {
               updated = true;
             }
 
-            // Recursively check subtasks
             if (updateParentTasks(task.subtasks)) {
               updated = true;
             }
@@ -132,9 +123,8 @@ export function Checklist({ initialTasks }: ChecklistProps) {
 
   return (
     <div className="flex h-full bg-[#FFFFFF] rounded-[12px]">
-      {/* Left side: Checklist */}
-      <div className="w-1/2 py-6 overflow-auto">
-        <h2 className="mx-6 text-xl font-semibold text-gray-900 mb-1">
+      <div className="w-1/2 py-6 overflow-auto hide-scrollbar">
+        <h2 className="mx-6 text-xl font-sem</div>ibold text-gray-900 mb-1">
           Checklist
         </h2>
         <p className="mx-6 text-sm text-[#475467] mb-4">
@@ -190,7 +180,6 @@ export function Checklist({ initialTasks }: ChecklistProps) {
         </div>
       </div>
 
-      {/* Right side: Task Details */}
       <div className="w-1/2 h-[97%] ">
         <TaskDetails selectedTask={selectedTask} />
       </div>
