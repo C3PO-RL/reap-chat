@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { checkResourceExists } from "@/lib/not-found";
 import type { Case } from "@/types/index";
 
-// Mock data - in a real app, this would come from a database
 const cases: Record<string, Case> = {
   "1": {
     id: "1",
@@ -29,7 +28,6 @@ export default async function CaseLayout({
 }: CaseLayoutProps) {
   const { id } = await params;
 
-  // Check if the case exists, if not trigger a 404
   checkResourceExists(!!cases[id], `Case with ID ${id} not found`);
 
   return <>{children}</>;

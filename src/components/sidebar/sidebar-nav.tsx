@@ -1,14 +1,14 @@
 import type React from "react";
 import {
   Home,
-  LayoutDashboard,
-  Folder,
-  CheckSquare,
-  BarChart2,
   Users,
-  HelpCircle,
   Settings,
   ChevronRight,
+  ChartColumnIncreasing,
+  Layers,
+  CopyCheckIcon,
+  ChartPie,
+  LifeBuoy,
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "../../lib/utils";
@@ -24,19 +24,19 @@ export function SidebarNav() {
   const navItems: NavItem[] = [
     { icon: Home, label: "Home", href: "/", active: false },
     {
-      icon: LayoutDashboard,
+      icon: ChartColumnIncreasing,
       label: "Dashboard",
       href: "/dashboard",
       active: false,
     },
-    { icon: Folder, label: "Cases", href: "/cases", active: true },
-    { icon: CheckSquare, label: "Tasks", href: "/tasks", active: false },
-    { icon: BarChart2, label: "Reporting", href: "/reporting", active: false },
+    { icon: Layers, label: "Cases", href: "/cases", active: true },
+    { icon: CopyCheckIcon, label: "Tasks", href: "/tasks", active: false },
+    { icon: ChartPie, label: "Reporting", href: "/reporting", active: false },
     { icon: Users, label: "Users", href: "/users", active: false },
   ];
 
   const bottomNavItems: NavItem[] = [
-    { icon: HelpCircle, label: "Support", href: "/support", active: false },
+    { icon: LifeBuoy, label: "Support", href: "/support", active: false },
     { icon: Settings, label: "Settings", href: "/settings", active: false },
   ];
 

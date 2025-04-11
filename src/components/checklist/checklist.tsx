@@ -131,31 +131,36 @@ export function Checklist({ initialTasks }: ChecklistProps) {
   }, [tasks]);
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full bg-[#FFFFFF] rounded-[12px]">
       {/* Left side: Checklist */}
-      <div className="w-1/2 p-6 overflow-auto">
-        <h2 className="text-xl font-semibold text-gray-900 mb-1">Checklist</h2>
-        <p className="text-sm text-gray-500 mb-4">
+      <div className="w-1/2 py-6 overflow-auto">
+        <h2 className="mx-6 text-xl font-semibold text-gray-900 mb-1">
+          Checklist
+        </h2>
+        <p className="mx-6 text-sm text-[#475467] mb-4">
           Track your progress through the case setup process
         </p>
 
-        <div className="mb-6">
+        <div className="mb-6 px-6">
           <div className="flex justify-between mb-2">
-            <span className="text-lg font-semibold">{progressPercentage}%</span>
-            <span className="text-sm text-gray-500">
-              {unfinishedTasks.length} tasks to complete
-            </span>
+            <span className="text-lg text-black">{progressPercentage}%</span>
           </div>
           <Progress
             value={progressPercentage}
             className="h-2 bg-gray-100"
             indicatorClassName="bg-green-600"
           />
+          <div className="flex justify-between mb-2">
+            <span className="text-sm text-black">{tasks.length} tasks</span>
+            <span className="text-sm text-gray-500">
+              {unfinishedTasks.length} tasks to complete
+            </span>
+          </div>
         </div>
 
         <div className="space-y-6">
           <div>
-            <h3 className="text-sm font-medium text-gray-500 mb-2">
+            <h3 className="text-sm font-medium text-[#464A52] mb-2 mx-6">
               Unfinished tasks
             </h3>
             <TaskList
@@ -165,12 +170,13 @@ export function Checklist({ initialTasks }: ChecklistProps) {
               onToggleCompletion={toggleTaskCompletion}
             />
           </div>
-
-          <AddTaskButton />
+          <div className="mx-6">
+            <AddTaskButton />
+          </div>
 
           {completedTasks.length > 0 && (
             <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-2">
+              <h3 className="text-sm font-medium text-gray-500 mb-2 mx-6">
                 Finished tasks
               </h3>
               <TaskList
@@ -185,11 +191,8 @@ export function Checklist({ initialTasks }: ChecklistProps) {
       </div>
 
       {/* Right side: Task Details */}
-      <div className="w-1/2">
-        <TaskDetails
-          selectedTask={selectedTask}
-          onToggleCompletion={toggleTaskCompletion}
-        />
+      <div className="w-1/2 h-[97%] ">
+        <TaskDetails selectedTask={selectedTask} />
       </div>
     </div>
   );

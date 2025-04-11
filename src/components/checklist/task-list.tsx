@@ -57,12 +57,14 @@ function TaskItem({
   return (
     <div
       className={cn(
-        "border rounded-lg p-4 transition-all",
+        isSelected && !task.completed
+          ? "p-4 ml-6 cursor-pointer"
+          : "border rounded-lg p-4 transition-all ml-6 mr-6 cursor-pointer",
         task.completed
           ? "bg-gray-50 border-gray-200"
           : "bg-white border-gray-200",
         isSelected && !task.completed
-          ? "border-green-500 ring-1 ring-green-500"
+          ? "bg-[#F5F5F2] border-l border-t border-b rounded-l-lg rounded-r-[-12px]"
           : ""
       )}
       onClick={onSelect}
@@ -80,20 +82,20 @@ function TaskItem({
             onCheckedChange={() => {}}
           />
         </div>
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 flex flex-row justify-between">
           <label
             htmlFor={`task-${task.id}`}
             className={cn(
               "text-sm font-medium cursor-pointer",
               task.completed ? "text-gray-500 line-through" : "text-gray-900"
             )}
-            onClick={(e) => e.stopPropagation()} // Prevent triggering the parent onClick
+            onClick={(e) => e.stopPropagation()}
           >
             {task.title}
           </label>
 
           {task.hasComments && (
-            <div className="flex items-center gap-1 mt-1">
+            <div className="flex items-center gap-1 mt-1 bg-[#D3E5E3] rounded-full px-2 py-1">
               <MessageSquare className="h-4 w-4 text-green-600" />
               <span className="text-xs text-green-600">
                 {task.commentCount}
@@ -103,14 +105,13 @@ function TaskItem({
         </div>
 
         {task.dueDate && (
-          <div className="flex items-center gap-1 text-xs text-red-500">
+          <div className="flex items-center gap-1 text-xs text-red-500 bg-[#FFEEEE] rounded-full px-2 py-1">
             <Calendar className="h-4 w-4" />
             <span>{task.dueDate}</span>
           </div>
         )}
       </div>
 
-      {/* Render subtasks if they exist */}
       {task.subtasks && task.subtasks.length > 0 && !task.completed && (
         <div className="ml-8 mt-4 space-y-2">
           {task.subtasks.map((subtask) => (

@@ -1,11 +1,10 @@
-'use client';
+"use client";
 import { CaseHeader } from "@/components/case/case-header";
 import { CaseTabs } from "@/components/case/case-tabs";
 import { Checklist } from "@/components/checklist/checklist";
 import { FloatingChat } from "@/components/chat/floating-chat";
 import type { Case, Message, Task, User } from "@/types/index";
 
-// Mock data
 const caseData: Case = {
   id: "1",
   caseId: "123456-45",
@@ -13,7 +12,6 @@ const caseData: Case = {
   avatar: "/images/avatar.png",
 };
 
-// Updated tasks with parent-child relationships
 const initialTasks: Task[] = [
   {
     id: "medicaid-number",
@@ -131,10 +129,10 @@ const messages: Message[] = [
 
 export default function CaseChecklistPage() {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-[#F5F5F2] p-6">
       <CaseHeader caseData={caseData} />
       <CaseTabs caseId={caseData.id} activeTab="Checklist" />
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden p-4">
         <Checklist initialTasks={initialTasks} />
       </div>
 

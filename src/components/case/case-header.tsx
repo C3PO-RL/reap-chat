@@ -9,7 +9,7 @@ interface CaseHeaderProps {
 
 export function CaseHeader({ caseData }: CaseHeaderProps) {
   return (
-    <div className="border-b border-gray-200">
+    <div className=" bg-[#F5F5F2]">
       <div className="flex items-center gap-2 px-4 py-2 text-sm text-gray-500">
         <Link href="/" className="hover:text-gray-700">
           <Home className="h-4 w-4" />

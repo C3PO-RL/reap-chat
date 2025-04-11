@@ -20,7 +20,7 @@ export function CaseTabs({ caseId, activeTab }: CaseTabsProps) {
   ];
 
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-gray-200 bg-[#F5F5F2]">
       <nav className="flex space-x-8 px-4">
         {tabs.map((tab) => {
           const href = `/cases/${caseId}/${tab
@@ -33,9 +33,9 @@ export function CaseTabs({ caseId, activeTab }: CaseTabsProps) {
               key={tab}
               href={href}
               className={cn(
-                "py-4 px-1 border-b-2 text-sm font-medium",
+                "py-2 px-1 border-b-2 text-sm font-medium",
                 isActive
-                  ? "border-green-600 text-green-600"
+                  ? "border-[#2E605A] text-[#2E605A]"
                   : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
               )}
             >
