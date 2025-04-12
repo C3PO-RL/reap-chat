@@ -70,7 +70,7 @@ export function ChatPanel({
           <ChatInput placeholder={`Message ${recipient.name}`} />
           <Button
             size="icon"
-            className="rounded-full bg-transparent absolute left-90 top-1/2 transform -translate-y-1/2  cursor-pointer"
+            className="rounded-full bg-transparent absolute right-14 top-1/2 transform -translate-y-1/2  cursor-pointer"
           >
             <Send className="h-5 w-5 text-green-500" />
           </Button>
